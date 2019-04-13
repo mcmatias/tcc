@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+      <div class="col-md-8">
+        <!-- <img src="../../assets/grafico.PNG" alt="Gráfico"> -->
+        <h2 *ngFor="let ativo of ativos">{{ ativo.simbolo + ": " + ativo.variacao }}</h2>
+      </div>
+  <!-- </div>
+  <div class="row"> -->
+      <div class="col-md-4">
+        <div class="list-group">
+          <button type="button" class="list-group-item list-group-item-action active">
+            ITSA4
+          </button>
+          <button type="button" (click)="onGetAtivo()" class="list-group-item list-group-item-action">
+            PETR4
+          </button>
+          <button type="button" class="list-group-item list-group-item-action">
+            CMIG4
+          </button>
+          <button type="button" class="list-group-item list-group-item-action">
+            BBDC4
+          </button>
+          <button type="button" class="list-group-item list-group-item-action">
+            USIM5
+          </button>
+        </div>
+      </div>
+  </div>
+</div>
+
+
