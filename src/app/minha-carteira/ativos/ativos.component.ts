@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AtivosService } from 'src/app/ativos.service';
 
 @Component({
   selector: 'app-ativos',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AtivosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ativoService: AtivosService) { }
 
   ngOnInit() {
   }
 
+  ativos = this.ativoService.ativos;
+  
 }

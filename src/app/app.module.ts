@@ -13,6 +13,7 @@ import { InfosAtivoComponent } from './minha-carteira/infos-ativo/infos-ativo.co
 import { GraficoAtivoComponent } from './minha-carteira/grafico-ativo/grafico-ativo.component';
 import { HttpModule } from '@angular/http';
 import { ServerService } from './server.service';
+import { AtivosService } from './ativos.service';
 
 
 const appRoutes: Routes = [
@@ -36,7 +37,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpModule
   ],
-  providers: [ServerService],
+  providers: [ServerService, AtivosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
