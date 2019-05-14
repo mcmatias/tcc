@@ -3,16 +3,23 @@
       <div class="col-md-8">
         <!-- <img src="../../assets/grafico.PNG" alt="Gráfico"> -->
         <!-- <h2 *ngFor="let ativo of ativos">{{ ativo.simbolo + ": " + ativo.variacao }}</h2> -->
-        <app-ativos *ngFor="let ativo of ativos; let i = index">{{ ativos[i] }}</app-ativos>
+        <span *ngFor="let ativo of ativos"> 
+          <app-ativos [ativo] = "ativo"></app-ativos>
+        </span>
       </div>
   <!-- </div>
   <div class="row"> -->
       <div class="col-md-4">
         <div class="list-group">
-          <button type="button" (click)="onGetAtivo($event)" value="ITSA4" class="list-group-item list-group-item-action">
+          <!-- <span *ngFor="let x of listaAtivos">
+              <button type="button" (click)="onGetAtivo(x)" class="list-group-item list-group-item-action">
+                  {{ x }}
+                </button>
+          </span> -->
+          <button type="button" (click)="onGetAtivo('ITSA4')" class="list-group-item list-group-item-action">
             ITSA4
           </button>
-          <button type="button" (click)="onGetAtivo($event)" value="PETR4" class="list-group-item list-group-item-action">
+          <button type="button" (click)="onGetAtivo('PETR4')" class="list-group-item list-group-item-action">
             PETR4
           </button>
           <button type="button" class="list-group-item list-group-item-action">

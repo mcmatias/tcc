@@ -25,9 +25,9 @@ export class MinhaCarteiraComponent implements OnInit {
   ativos = this.ativoService.ativos;
   codAtivo: string;
 
-  onGetAtivo($event) {
-    alert($event.target.value);
-    this.codAtivo = $event.target.value;
+  onGetAtivo(ativo: string) {
+    //alert($event.target.value);
+    this.codAtivo = ativo;
     this.serverService.getAtivo(this.codAtivo)
       .subscribe(
         (ativo: any[]) => {
