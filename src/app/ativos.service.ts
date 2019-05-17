@@ -7,13 +7,7 @@ export class AtivosService {
     valorCompra : number;
     cotas : number;
     ativos = [];
-    meusValoresCompra = [
-      {
-        'simbolo' : 'PETR4',
-        'compra' : '24.000',
-        'cotas' : 100
-      }
-    ]
+    meusValoresCompra = [];
 
     testeDadosBanco = [];
     

@@ -26,7 +26,7 @@ export class MinhaCarteiraComponent implements OnInit {
         (ativo: any[]) => {
           this.listaAtivos = Object.values(ativo);
           for(let i=0; i<this.listaAtivos.length; i++) {
-            this.ativoService.testeDadosBanco.push({
+            this.ativoService.meusValoresCompra.push({
               'compra' : this.listaAtivos[i].compra,
               'cotas' : this.listaAtivos[i].cotas,
               'simbolo' : this.listaAtivos[i].simbolo
@@ -41,7 +41,7 @@ export class MinhaCarteiraComponent implements OnInit {
   }
 
   
-  abc = this.ativoService.testeDadosBanco;
+  abc = this.ativoService.meusValoresCompra;
   ativos = this.ativoService.ativos;
   codAtivo: string;
 
@@ -60,7 +60,7 @@ export class MinhaCarteiraComponent implements OnInit {
           this.ativoService.ativos.push({
             'simbolo' : ativo["Global Quote"]["01. symbol"].split('.')[0],
             'valor' : ativo["Global Quote"]["05. price"],
-            'variacao' : +((this.ativoService.valorCompra - +ativo["Global Quote"]["05. price"]).toPrecision(4))*this.ativoService.cotas
+            'variacao' : +((+ativo["Global Quote"]["05. price"] - +this.ativoService.valorCompra).toPrecision(4))*this.ativoService.cotas
           });
         },
         (error) => console.log(error)
@@ -81,6 +81,7 @@ export class MinhaCarteiraComponent implements OnInit {
       );
 
     this.novoAtivoForm.reset();
+    location.reload();
   }
 
 }
