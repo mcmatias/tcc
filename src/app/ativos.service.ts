@@ -14,5 +14,7 @@ export class AtivosService {
         'cotas' : 100
       }
     ]
+
+    testeDadosBanco = [];
     
 }

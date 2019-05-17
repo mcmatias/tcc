@@ -12,6 +12,7 @@ import { AtivosComponent } from './minha-carteira/ativos/ativos.component';
 import { InfosAtivoComponent } from './minha-carteira/infos-ativo/infos-ativo.component';
 import { GraficoAtivoComponent } from './minha-carteira/grafico-ativo/grafico-ativo.component';
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServerService } from './server.service';
 import { AtivosService } from './ativos.service';
 
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
     HttpModule
   ],
   providers: [ServerService, AtivosService],

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server.service';
 import { Response } from '@angular/http';
 import { AtivosService } from '../ativos.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-minha-carteira',
@@ -11,17 +12,36 @@ import { AtivosService } from '../ativos.service';
 export class MinhaCarteiraComponent implements OnInit {
   constructor(private serverService: ServerService, private ativoService: AtivosService) { }
 
+  novoAtivoForm: FormGroup;
+  listaAtivos = [];
   ngOnInit() {
+    this.novoAtivoForm = new FormGroup({
+      'simboloNovoAtivo': new FormControl(null),
+      'cotasNovoAtivo': new FormControl(null),
+      'valorDeCompraNovoAtivo': new FormControl(null)
+    });
+
+    this.serverService.getAtivoBanco()
+      .subscribe(
+        (ativo: any[]) => {
+          this.listaAtivos = Object.values(ativo);
+          for(let i=0; i<this.listaAtivos.length; i++) {
+            this.ativoService.testeDadosBanco.push({
+              'compra' : this.listaAtivos[i].compra,
+              'cotas' : this.listaAtivos[i].cotas,
+              'simbolo' : this.listaAtivos[i].simbolo
+            });
+          }
+
+        },
+        (error) => console.log(error)
+      )
+
+
   }
 
-  // valorCompra : number;
-  // ativos = [];
-  // meusValoresCompra = [
-  //   {
-  //     'simbolo' : 'PETR4',
-  //     'compra' : '24.000'
-  //   }
-  // ]
+  
+  abc = this.ativoService.testeDadosBanco;
   ativos = this.ativoService.ativos;
   codAtivo: string;
 
@@ -45,6 +65,22 @@ export class MinhaCarteiraComponent implements OnInit {
         },
         (error) => console.log(error)
       );
+  }
+
+  onSubmit() {
+    var novoAtivo = {
+      'simbolo' : this.novoAtivoForm.controls.simboloNovoAtivo.value,
+      'compra' : this.novoAtivoForm.controls.valorDeCompraNovoAtivo.value,
+      'cotas' : this.novoAtivoForm.controls.cotasNovoAtivo.value
+    }
+
+    this.serverService.setNovoAtivo(novoAtivo)
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
+
+    this.novoAtivoForm.reset();
   }
 
 }

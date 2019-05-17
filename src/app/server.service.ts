@@ -18,4 +18,18 @@ export class ServerService {
                 }
             ));
     }
+
+    setNovoAtivo(novoAtivo: any) {
+        return this.http.post('https://controlacoes-1c23b.firebaseio.com/data.json', novoAtivo);
+    }
+
+    getAtivoBanco() {
+        return this.http.get('https://controlacoes-1c23b.firebaseio.com/data.json')
+            .pipe(map(
+                (response: Response) => {
+                    const data = response.json();
+                    return data;
+                }
+            ));
+    }
 }
