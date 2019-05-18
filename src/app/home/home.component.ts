@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   valorInvestido = 0;
   ativosAtuais = [];
   valorAtual = 0;
+  porcentagemRendimento = 0;
 
   ngOnInit() {
 
@@ -33,15 +34,22 @@ export class HomeComponent implements OnInit {
        .subscribe(
          (ativo: any[]) => {
            this.ativosAtuais = Object.values(ativo);
+           this.ativoService.ativos.push({
+                       'simbolo' : ativo["Global Quote"]["01. symbol"].split('.')[0],
+                       'valor' : ativo["Global Quote"]["05. price"],
+                       'variacao' : +((+ativo["Global Quote"]["05. price"] - +this.ativoService.valorCompra).toPrecision(4))*this.ativoService.cotas
+                     });
            this.valorAtual += +(+ativo["Global Quote"]["05. price"]*+this.listaAtivos[i].cotas);
+           this.porcentagemRendimento = +(((this.valorAtual - this.valorInvestido)/this.valorInvestido)*100).toFixed(2);
          },
          (error) => console.log(error)
        );
+      
           }
-
         },
         (error) => console.log(error)
       )
+    
     
     // for(let i=0; i<this.ativoService.meusValoresCompra.length; i++) {
     //   this.serverService.getAtivo(this.ativoService.meusValoresCompra[i].simbolo)

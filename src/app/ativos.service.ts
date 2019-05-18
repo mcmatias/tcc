@@ -8,6 +8,7 @@ export class AtivosService {
     cotas : number;
     ativos = [];
     meusValoresCompra = [];
+    ativosRendimento = [];
 
     testeDadosBanco = [];
     

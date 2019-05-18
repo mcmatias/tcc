@@ -3,7 +3,7 @@
       <div class="col-md-8">
         <!-- <img src="../../assets/grafico.PNG" alt="Gráfico"> -->
         <!-- <h2 *ngFor="let ativo of ativos">{{ ativo.simbolo + ": " + ativo.variacao }}</h2> -->
-        <span *ngFor="let ativo of ativos"> 
+        <span *ngFor="let ativo of ativosRendimento"> 
           <app-ativos [ativo] = "ativo"></app-ativos>
         </span>
       </div>
@@ -40,9 +40,12 @@
           </form>
  
         <div class="list-group">
-            <button type="button" *ngFor="let x of abc" (click)="onGetAtivo(x.simbolo)" class="list-group-item list-group-item-action">
+            <!-- <button type="button" *ngFor="let x of abc" (click)="onGetAtivo(x.simbolo)" class="list-group-item list-group-item-action">
                 {{ x.simbolo }}
-              </button>
+            </button> -->
+            <button type="button" *ngFor="let x of abc" (click)="onGetAtivoServer(x.simbolo)" class="list-group-item list-group-item-action">
+              {{ x.simbolo }}
+            </button>
           <!-- <span *ngFor="let x of listaAtivos">
               <button type="button" (click)="onGetAtivo(x)" class="list-group-item list-group-item-action">
                   {{ x.simbolo }}
